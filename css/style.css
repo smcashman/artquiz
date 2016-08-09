@@ -1,0 +1,21 @@
+#title {
+	text-align: center;
+}
+
+.QuizContainer {
+	margin: 0 auto;
+	width:50%;
+  	min-height:25em;
+  	padding:20px;
+  	overflow: hidden;
+  	max-width: 430px;
+}
+
+img {
+	padding:5px;
+
+}
+
+.counterbox {
+	text-align: center;
+}
