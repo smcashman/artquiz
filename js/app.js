@@ -19,13 +19,13 @@ $(document).ready(function() {
         },
 
         {
-            "image": "images/avenueintherain.jpeg",
-            "options": ["Claude Monet", "Childe Hassam", "Andy Warhol", "Auguste Renoir"],
-            "correctOption": "Childe Hassam"
+            "image": "images/starrynight.jpg",
+            "options": ["Vincent Van Gogh", "Childe Hassam", "Andy Warhol", "Auguste Renoir"],
+            "correctOption": "Vincent Van Gogh"
         },
 
         {
-            "image": "images/danseabougival.jpg",
+            "image": "images/boatingparty.jpg",
             "options": ["Edouard Manet", "Auguste Renoir", "Peter Paul Rubens", "Georges Seurat"],
             "correctOption": "Auguste Renoir"
         }
@@ -85,8 +85,8 @@ $(document).ready(function() {
                     $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Claude_Monet'><img class='thumbnail' src='images/ImpressionSunrise.png'></a></div>");
                     $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/%C3%89douard_Manet'><img class='thumbnail' src='images/barfoliesbergeres.png'></a></div>");
                     $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Georges_Seurat'><img class='thumbnail' src='images/bathersasnieres.jpg'></a></div>");
-                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Childe_Hassam'><img class='thumbnail' src='images/avenueintherain.jpeg'></a></div>");
-                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir'><img class='thumbnail' src='images/danseabougival.jpg'></a></div>");
+                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Vincent_van_Gogh'><img class='thumbnail' src='images/starrynight.jpg'></a></div>");
+                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir'><img class='thumbnail' src='images/boatingparty.jpg'></a></div>");
                    
  				$(".QuizContainer").append("<div class = 'gameover'><h4>Start a new game?</h4></div>");
                 $(".QuizContainer").append("<button class='restart'>Restart</button>");
