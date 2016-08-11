@@ -8,13 +8,13 @@ $(document).ready(function() {
 
         {
             "image": "images/barfoliesbergeres.png",
-            "options": ["Edouard Manet", "Claude Monet", "Camille Pissaro", "Childe Hassam"],
+            "options": ["Edouard Manet", "Claude Monet", "Camille Pissarro", "Childe Hassam"],
             "correctOption": "Edouard Manet"
         },
 
         {
             "image": "images/bathersasnieres.jpg",
-            "options": ["Camille Pissaro", "Georges Seurat", "Thomas Cole", "Paul Signac"],
+            "options": ["Camille Pissarro", "Georges Seurat", "Thomas Cole", "Paul Signac"],
             "correctOption": "Georges Seurat"
         },
 
@@ -55,14 +55,42 @@ $(document).ready(function() {
                 	if (AnswerClicked == Questions[CurrentQuestion].correctOption) {
                 	Correct++
                 	$(".NumberCorrect").html(Correct);
-                	$(".singlequestion").html("<h2> You're done!</h2>");
-                	$(this).parent(".singlequestion").hide();
+                	$(this).parent(".singlequestion").hide()
+                	
+
 
                    
                 }
+               
+                $(".counterbox").hide();
                  	//AskQuestion();
                     //return false;
-                    $(".QuizContainer").html("<button class='restart'>Restart</button>");
+               	$(".QuizContainer").append("<h1>You scored "+Correct+" out of 5!</h1>")
+
+                    if (Correct >=4) {
+                    	$(".QuizContainer").append("<h2 class ='scoreStatement'> Monet would be proud. </h2><p> Click on the image to learn more about the artist</p>")
+                    }
+                    if (Correct <=3 && Correct > 2) {
+                    	$(".QuizContainer").append("<h2 class ='scoreStatement'> Well, you're not the worst. </h2><p> Click on the image to learn more about the artist</p>")
+                    }
+                    if (Correct <= 2) {
+                    	$(".QuizContainer").append("<h2 class ='scoreStatement'> You should go visit a museum. </h2><p> Click on the image to learn more about the artist</p>")
+                    }
+                    else {
+                    	console.log("why am i here?");
+                    }
+
+                    
+
+                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Claude_Monet'><img class='thumbnail' src='images/ImpressionSunrise.png'></a></div>");
+                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/%C3%89douard_Manet'><img class='thumbnail' src='images/barfoliesbergeres.png'></a></div>");
+                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Georges_Seurat'><img class='thumbnail' src='images/bathersasnieres.jpg'></a></div>");
+                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Childe_Hassam'><img class='thumbnail' src='images/avenueintherain.jpeg'></a></div>");
+                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir'><img class='thumbnail' src='images/danseabougival.jpg'></a></div>");
+                   
+ 				$(".QuizContainer").append("<div class = 'gameover'><h4>Start a new game?</h4></div>");
+                $(".QuizContainer").append("<button class='restart'>Restart</button>");
+                    
                     $(".restart").click(function(){
                     	$(this).remove();
                     	 Correct = 0
@@ -71,6 +99,8 @@ $(document).ready(function() {
     					 $(".questionNumber").html(CurrentQuestion + 1);
                         $(".NumberCorrect").html(Correct);
                         $(".NumberRemaining").html(RemainingQuestions);
+                        $(".scoreStatement").hide();
+                        $(".gameover").hide();
     					AskQuestion();
 
                     });
