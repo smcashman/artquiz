@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	//question object arrays 
     var Questions = [{
             "image": "images/ImpressionSunrise.png",
             "options": ["Claude Monet", "Vincent Van Gogh", "Peter Paul Rubens", "Jackson Pollock"],
@@ -8,7 +8,7 @@ $(document).ready(function() {
 
         {
             "image": "images/barfoliesbergeres.png",
-            "options": ["Edouard Manet", "Claude Monet", "Camille Pissarro", "Childe Hassam"],
+            "options": ["Childe Hassam", "Claude Monet", "Camille Pissarro", "Edouard Manet"],
             "correctOption": "Edouard Manet"
         },
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
         {
             "image": "images/starrynight.jpg",
-            "options": ["Vincent Van Gogh", "Childe Hassam", "Andy Warhol", "Auguste Renoir"],
+            "options": ["Andy Warhol", "Childe Hassam", "Vincent Van Gogh", "Auguste Renoir"],
             "correctOption": "Vincent Van Gogh"
         },
 
@@ -36,7 +36,7 @@ $(document).ready(function() {
     var RemainingQuestions = 4
 
     function AskQuestion() {
-        $(".QuizContainer").append("<div class = 'singlequestion'><img src='" + Questions[CurrentQuestion].image + "'></div>")
+        $(".QuizContainer").append("<div class = 'singlequestion'><img src='" + Questions[CurrentQuestion].image + "'><div class='buttonwrapper'></div></div>")
         for (i = 0; i < Questions[CurrentQuestion].options.length; i++) {
             //$(".imageContainer").append("<div class='" +Questions[i].number+ "'> <img src='" +Questions[i].image+"'><div class='questionWrapper'></div></div>");
             //var QuestionsHTML = ""
@@ -44,49 +44,42 @@ $(document).ready(function() {
             //$(".questionWrapper").append("<button>"+value+"</button>");
             //});
 
-            $(".singlequestion").append("<button class='Questions'>" + Questions[CurrentQuestion].options[i] + "</button>")
+            $(".buttonwrapper").append("<button class='Questions'>" + Questions[CurrentQuestion].options[i] + "</button>")
 
             //$("button").click(function()
             $("button").off('click').on('click', function() {
-                $(this).parent(".singlequestion").hide();
+                $(this).parent(".buttonwrapper").parent(".singlequestion").hide();
                 var AnswerClicked = $(this).text()
+
+                //if user is on last question, results show next//
 
                 if (RemainingQuestions < 1) {
                 	if (AnswerClicked == Questions[CurrentQuestion].correctOption) {
                 	Correct++
                 	$(".NumberCorrect").html(Correct);
-                	$(this).parent(".singlequestion").hide()
-                	
-
-
-                   
+                	$(this).parent(".singlequestion").hide()  
                 }
                
                 $(".counterbox").hide();
-                 	//AskQuestion();
-                    //return false;
-               	$(".QuizContainer").append("<h1>You scored "+Correct+" out of 5!</h1>")
+                 	
+               	$(".scorewrapper").append("<h1 class='finalscore'>You scored "+Correct+" out of 5!</h1>")
 
                     if (Correct >=4) {
-                    	$(".QuizContainer").append("<h2 class ='scoreStatement'> Monet would be proud. </h2><p> Click on the image to learn more about the artist</p>")
+                    	$(".scorewrapper").append("<h2 class ='scoreStatement'> Monet would be proud. </h2>")
                     }
                     if (Correct <=3 && Correct > 2) {
-                    	$(".QuizContainer").append("<h2 class ='scoreStatement'> Well, you're not the worst. </h2><p> Click on the image to learn more about the artist</p>")
+                    	$(".scorewrapper").append("<h2 class ='scoreStatement'> Well, you're not the worst. </h2>")
                     }
                     if (Correct <= 2) {
-                    	$(".QuizContainer").append("<h2 class ='scoreStatement'> You should go visit a museum. </h2><p> Click on the image to learn more about the artist</p>")
+                    	$(".scorewrapper").append("<h2 class ='scoreStatement'> You should go visit a museum. </h2>")
                     }
-                    else {
-                    	console.log("why am i here?");
-                    }
-
                     
-
-                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Claude_Monet'><img class='thumbnail' src='images/ImpressionSunrise.png'></a></div>");
-                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/%C3%89douard_Manet'><img class='thumbnail' src='images/barfoliesbergeres.png'></a></div>");
-                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Georges_Seurat'><img class='thumbnail' src='images/bathersasnieres.jpg'></a></div>");
-                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Vincent_van_Gogh'><img class='thumbnail' src='images/starrynight.jpg'></a></div>");
-                    $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir'><img class='thumbnail' src='images/boatingparty.jpg'></a></div>");
+                $(".QuizContainer").append("<p class='galleryhead'> Click on the image to learn more about the artist</p>");
+                $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Claude_Monet'><img class='thumbnail' src='images/ImpressionSunrise.png'></a></div>");
+                $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/%C3%89douard_Manet'><img class='thumbnail' src='images/barfoliesbergeres.png'></a></div>");
+                $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Georges_Seurat'><img class='thumbnail' src='images/bathersasnieres.jpg'></a></div>");
+                $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Vincent_van_Gogh'><img class='thumbnail' src='images/starrynight.jpg'></a></div>");
+                $(".QuizContainer").append("<div class = gallery><a href='https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir'><img class='thumbnail' src='images/boatingparty.jpg'></a></div>");
                    
  				$(".QuizContainer").append("<div class = 'gameover'><h4>Start a new game?</h4></div>");
                 $(".QuizContainer").append("<button class='restart'>Restart</button>");
@@ -96,11 +89,14 @@ $(document).ready(function() {
                     	 Correct = 0
     					 CurrentQuestion = 0
     					 RemainingQuestions = 4
-    					 $(".questionNumber").html(CurrentQuestion + 1);
+    					$(".questionNumber").html(CurrentQuestion + 1);
                         $(".NumberCorrect").html(Correct);
                         $(".NumberRemaining").html(RemainingQuestions);
                         $(".scoreStatement").hide();
                         $(".gameover").hide();
+                        $(".galleryhead").hide();
+                        $(".gallery").hide();
+                        $(".finalscore").hide();
     					AskQuestion();
 
                     });
@@ -139,30 +135,7 @@ $(document).ready(function() {
 
     AskQuestion();
 
-    /*$("button").click(function() {
-    		var AnswerClicked = $(this).text()
-    		if (AnswerClicked == Questions[CurrentQuestion].correctOption) {
-    			Correct++
-    			CurrentQuestion ++
-    			RemainingQuestions --
-    			$(".questionNumber").html(CurrentQuestion+1);
-    			$(".NumberCorrect").html(Correct);
-    			$(".NumberRemaining").html(RemainingQuestions);
-    			console.log("correct");
-
-    		}
-    		else {
-    			console.log("nope");
-    		}
-    		
-    			if (RemainingQuestions < 1) {
-    		//last question
-    	}
-    	else {
-    		AskQuestion();
-    	
-    	}
-    	});*/
+   
 
 
 
