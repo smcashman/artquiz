@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	//question object arrays 
+
+   
     var Questions = [{
             "image": "images/ImpressionSunrise.png",
             "options": ["Claude Monet", "Vincent Van Gogh", "Peter Paul Rubens", "Jackson Pollock"],
